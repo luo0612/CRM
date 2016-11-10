@@ -21,4 +21,11 @@ public interface CrmDepartmentService {
      * @return
      */
     List<CrmDepartment> findAllCrmDepartment();
+
+    /**
+     * 更新部门
+     *
+     * @param crmDepartment
+     */
+    void updateCrmDepartment(CrmDepartment crmDepartment);
 }

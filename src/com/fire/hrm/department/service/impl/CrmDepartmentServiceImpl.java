@@ -28,5 +28,10 @@ public class CrmDepartmentServiceImpl implements CrmDepartmentService {
         return allDepartment;
     }
 
+    @Override
+    public void updateCrmDepartment(CrmDepartment crmDepartment) {
+        crmDepartmentDao.updateCrmDepartment(crmDepartment);
+    }
+
 
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="department" namespace="/" extends="common">
+        <action name="departmentAction_*" method="{1}" class="com.fire.hrm.department.web.action.DepartmentAction">
+            <result name="findAll">/WEB-INF/pages/department/listDepartment.jsp</result>
+            <result name="editDepartment">/WEB-INF/pages/department/addOrEditDepartment.jsp</result>
+            <result name="input">/WEB-INF/pages/department/addOrEditDepartment.jsp</result>
+        </action>
+
+    </package>
+</struts>

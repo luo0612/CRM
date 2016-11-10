@@ -50,5 +50,6 @@
 
     <!--3.引入其他配置文件-->
     <include file="struts/struts_staff.xml"></include>
-
+    <!--3.2引入部门的配置文件-->
+    <include file="struts/struts_department.xml"></include>
 </struts>

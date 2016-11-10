@@ -59,6 +59,7 @@
         <tx:attributes>
             <tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED"/>
             <tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED"/>
         </tx:attributes>
     </tx:advice>
 
