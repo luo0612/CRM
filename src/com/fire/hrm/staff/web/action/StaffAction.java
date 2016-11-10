@@ -72,4 +72,16 @@ public class StaffAction extends ActionSupport implements ModelDriven<CrmStaff> 
         return "findAll";
     }
 
+    /**
+     * 编辑员工信息
+     *
+     * @return
+     */
+    public String editStaff() {
+        CrmStaff crmStaff = mCrmStaffService.findCrmStaff(mCrmStaff.getStaffId());
+        //1.将查询出的员工放入到root栈中
+        ActionContext.getContext().getValueStack().push(crmStaff);
+        return "editStaff";
+    }
+
 }

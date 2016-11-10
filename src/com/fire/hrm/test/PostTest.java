@@ -24,7 +24,7 @@ public class PostTest {
     public void testAddCrmPost() {
         CrmPost crmPost = new CrmPost();
         crmPost.setPostId(UUID.randomUUID().toString());
-        crmPost.setPostName("android工程师");
+        crmPost.setPostName("Java工程师");
         mCrmPostService.addCrmPost(crmPost);
     }
 }

@@ -87,44 +87,48 @@
     </tr>
 
 
-    <tr class="tabtd1">
-        <td align="center">管理员</td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td width="7%" align="center">
-            <%--TODO 管理员编辑,需要将管理员的staffId传递过去--%>
-            <a href="${pageContext.request.contextPath}/uiAction_staff_editStaff?staffId=${sessionScope.staff.staffId}"><img
-                    src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/></a>
-        </td>
+    <%--    <tr class="tabtd1">
+            <td align="center">管理员</td>
+            <td align="center"></td>
+            <td align="center"></td>
+            <td align="center"></td>
+            <td align="center"></td>
+            <td width="7%" align="center">
+                &lt;%&ndash;TODO 管理员编辑,需要将管理员的staffId传递过去&ndash;%&gt;
+                <a href="${pageContext.request.contextPath}/uiAction_staff_editStaff?staffId=${sessionScope.staff.staffId}"><img
+                        src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/></a>
+            </td>
 
-    </tr>
+        </tr>--%>
 
     <%--TODO 从后台获取进行分页查询--%>
 
-    <s:iterator value="#allCrmStaff" >
-        <tr class="tabtd2">
-            <td align="center"><s:property value="staffId"/></td>
+    <s:iterator value="#allCrmStaff" status="staff">
+
+        <tr class="<s:property value="#staff.even?'tabtd2':'tabtd1'"/>">
+            <td align="center"><s:property value="staffName"/></td>
             <td align="center"><s:property value="gender"/></td>
             <td align="center"><s:date name="onDutyDate" format="yyyy-MM-dd"/></td>
-            <td align="center">咨询部</td>
-            <td align="center"><s:property value="posts"></s:property></td>
+            <td align="center"><s:property value="crmPost.department.depName"/></td>
+            <td align="center"><s:property value="crmPost.postName"/></td>
+                <%--<s:debug></s:debug>--%>
             <td width="7%" align="center">
-                    <%--TODO 点击编辑需要将员工的staffId传递过去--%>
-                <a href="${pageContext.request.contextPath}/uiAction_staff_editStaff?staffId=''"><img
-                        src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/></a>
+                    <%--TODO 点击编辑需要将员工的staffId传递过去,需要使用Struts标签--%>
+                <s:a namespace="/" action="staffAction_editStaff">
+                    <s:param name="staffId" value="staffId"></s:param>
+                    <img src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/>
+                </s:a>
             </td>
         </tr>
     </s:iterator>
 
 </table>
 
-
+<%--
 <table border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
         <td align="right">
-            <%--TODO 总页数从后台获取--%>
+            &lt;%&ndash;TODO 总页数从后台获取&ndash;%&gt;
             <span>第1/3页</span>
         <span>
         	<a href="#">[首页]</a>&nbsp;&nbsp;
@@ -134,7 +138,7 @@
         </span>
         </td>
     </tr>
-</table>
+</table>--%>
 
 </body>
 </html>

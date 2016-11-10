@@ -33,4 +33,10 @@ public class CrmStaffServiceImpl implements CrmStaffService {
         List<CrmStaff> allCrmStaff = mCrmStaffDao.findAllCrmStaff();
         return allCrmStaff;
     }
+
+    @Override
+    public CrmStaff findCrmStaff(String id) {
+        CrmStaff crmStaff = mCrmStaffDao.findCrmStaff(id);
+        return crmStaff;
+    }
 }

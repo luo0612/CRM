@@ -13,6 +13,8 @@
             <result name="home">/WEB-INF/pages/frame.jsp</result>
             <!--3.查询所有的员工-->
             <result name="findAll">/WEB-INF/pages/staff/listStaff.jsp</result>
+            <!--4.编辑员工信息-->
+            <result name="editStaff">/WEB-INF/pages/staff/editStaff.jsp</result>
         </action>
     </package>
 </struts>

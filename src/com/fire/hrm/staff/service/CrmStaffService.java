@@ -15,6 +15,7 @@ public interface CrmStaffService {
      */
     CrmStaff login(CrmStaff crmStaff);
 
+
     /**
      * 添加员工
      *
@@ -28,4 +29,12 @@ public interface CrmStaffService {
      * @return
      */
     List<CrmStaff> findAllCrmStaff();
+
+    /**
+     * 查询用户
+     *
+     * @param id
+     * @return
+     */
+    CrmStaff findCrmStaff(String id);
 }

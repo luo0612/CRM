@@ -14,6 +14,7 @@ public class CrmStaffDaoImpl extends HibernateDaoSupport implements CrmStaffDao 
 
     @Override
     public void addCrmStaff(CrmStaff crmStaff) {
+        crmStaff.setLoginPwd(MD5Utils.md5(crmStaff.getLoginPwd()));
         //添加员工
         getHibernateTemplate().save(crmStaff);
     }
@@ -35,6 +36,12 @@ public class CrmStaffDaoImpl extends HibernateDaoSupport implements CrmStaffDao 
         }
         //说明没有符合条件的员工
         return null;
+    }
+
+    @Override
+    public CrmStaff findCrmStaff(String id) {
+        CrmStaff staff = getHibernateTemplate().get(CrmStaff.class, id);
+        return staff;
     }
 
     @Override

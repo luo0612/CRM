@@ -24,6 +24,14 @@ public interface CrmStaffDao {
     CrmStaff findCrmStaff(CrmStaff crmStaff);
 
     /**
+     * 查询用户
+     *
+     * @param id
+     * @return
+     */
+    CrmStaff findCrmStaff(String id);
+
+    /**
      * 查询所有的员工
      *
      * @return
