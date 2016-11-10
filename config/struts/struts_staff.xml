@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="staff" namespace="/" extends="common">
+        <action name="staffAction_*" method="{1}" class="com.fire.hrm.staff.web.action.StaffAction">
+            <!--1.重定向到主界面-->
+            <result name="success" type="redirectAction">staffAction_home</result>
+            <!--3.登录成功,重定向到主界面-->
+            <result name="home">/WEB-INF/pages/frame.jsp</result>
+            <!--3.查询所有的员工-->
+            <result name="findAll">/WEB-INF/pages/staff/listStaff.jsp</result>
+        </action>
+    </package>
+</struts>

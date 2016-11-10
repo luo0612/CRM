@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fire.hrm.post.domain.CrmPost" table="crm_post">
+        <id name="postId">
+            <generator class="uuid"></generator>
+        </id>
+        <property name="postName" type="java.lang.String"></property>
+
+        <!--部门-->
+        <!--cascade="save-update" 级联操作-->
+        <many-to-one name="department" class="com.fire.hrm.department.domain.CrmDepartment" cascade="save-update"/>
+        <!--员工-->
+        <!--cascade="save-update" 级联操作-->
+        <set name="staffs" cascade="save-update">
+            <key>
+                <!--外键-->
+                <column name="postId"></column>
+            </key>
+            <!---->
+            <many-to-many column="staffId" class="com.fire.hrm.staff.domain.CrmStaff"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

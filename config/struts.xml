@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!--1.配置常量-->
+    <constant name="struts.devMode" value="true"></constant>
+    <constant name="struts.ui.theme" value="simple"></constant>
+    <!--2.公共包-->
+    <package name="common" namespace="/" extends="struts-default">
+        <!--定义公共的拦截器-->
+        <interceptors>
+            <!--2.1声明,登录的拦截器,-->
+            <interceptor name="loginInterceptor"
+                         class="com.fire.hrm.staff.web.interceptor.LoginInterceptor"></interceptor>
+            <!--2.2自定义拦截器栈-->
+            <interceptor-stack name="loginStack">
+                <!--2.2.1添加默认的拦截器栈-->
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+                <!--2.2.2登录的拦截器-->
+                <interceptor-ref name="loginInterceptor">
+                    <!--2.2.2.1 将登录的方法排除,如果有多个用","进行分割,除login方法外,其它方法都需要对用户登录进行判断-->
+                    <param name="excludeMethods">login</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <!--2.3 将struts-default中的默认的拦截器栈覆盖掉-->
+        <default-interceptor-ref name="loginStack"></default-interceptor-ref>
+
+        <!--2.4 将login抽取为公共的result-->
+        <!--如果一个result配置可以被action所共享,则可以把该result配置抽取为公共的,
+        即<global-results/>,
+        如果其他包,也需要此公共的result配置,可以继承package-->
+        <global-results>
+            <!--2.登录失败,转发到登录界面-->
+            <result name="login">/WEB-INF/pages/login.jsp</result>
+        </global-results>
+
+        <!--2.5 配置公共的访问的UIAction-->
+        <!--class属性默认:ActionSupport-->
+        <action name="uiAction_*_*" >
+            <!--name属性默认:execute-->
+            <result>/WEB-INF/pages/{1}/{2}.jsp</result>
+        </action>
+    </package>
+
+
+    <!--3.引入其他配置文件-->
+    <include file="struts/struts_staff.xml"></include>
+
+</struts>

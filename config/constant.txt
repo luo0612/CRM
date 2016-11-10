@@ -1,0 +1,2 @@
+1.登录时,将用户对象放入到Session中,
+key字段:staff

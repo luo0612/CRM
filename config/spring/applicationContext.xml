@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--1.加载驱动的配置文件-->
+    <context:property-placeholder location="classpath:crm.properties"></context:property-placeholder>
+
+    <!--2.配置数据源-->
+    <bean id="dataSource" class="${jdbc.class}">
+        <!--2.1 配置驱动-->
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <!--2.2 配置URL-->
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+        <!--2.3配置用户名-->
+        <property name="user" value="${jdbc.user}"></property>
+        <!--2.4配置密码-->
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!--3.配置 SessionFactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--3.1 配置数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--3.2 配置Hibernate的属性-->
+        <property name="hibernateProperties">
+            <props>
+                <!--此处key值的前面都需要添加hibernate-->
+                <!--3.2.1配置显示SQL语句-->
+                <prop key="hibernate.show_sql">true</prop>
+                <!--3.2.2配置格式化SQL语句-->
+                <prop key="hibernate.format_sql">true</prop>
+                <!--3.2.2配置数据库方言-->
+                <prop key="dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <!--3.2.3配置自动同步-->
+                <prop key="hbm2ddl.auto">update</prop>
+                <!--3.2.4配置获取Session-->
+                <prop key="current_session_context_class">thread</prop>
+            </props>
+        </property>
+        <!--3.3配置映射文件-->
+        <!--3.4使用通配符进行配置-->
+        <property name="mappingLocations" value="classpath:com/fire/*/*/domain/*.hbm.xml"></property>
+    </bean>
+
+
+    <!--6.配置事务管理-->
+    <!--6.1 配置事务管理器-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--6.2 配置事务的定义-->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--6.3 配置Spring自动管理事务-->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.fire.*.*.service..*.*(..))"></aop:advisor>
+    </aop:config>
+
+    <!--导入其它的配置文件-->
+    <!--员工的配置文件-->
+    <import resource="applicationContext_staff.xml"></import>
+    <!--职务的配置文件-->
+    <import resource="applicationContext_post.xml"></import>
+    <!--部门的配置文件-->
+    <import resource="applicationContext_department.xml"></import>
+
+
+</beans>

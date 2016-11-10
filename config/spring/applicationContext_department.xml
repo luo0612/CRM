@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--sessionFactory:在applicationContext.xml中进行公共的配置-->
+
+    <!--4.配置DAO-->
+    <bean id="crmDepartmentDao" class="com.fire.hrm.department.dao.impl.CrmDepartmentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--5.配置Service-->
+    <bean id="crmDepartmentService" class="com.fire.hrm.department.service.impl.CrmDepartmentServiceImpl">
+        <property name="crmDepartmentDao" ref="crmDepartmentDao"></property>
+    </bean>
+
+</beans>

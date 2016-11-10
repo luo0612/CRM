@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--1.配置StaffDao-->
+    <bean id="crmStaffDao" class="com.fire.hrm.staff.dao.impl.CrmStaffDaoImpl">
+        <!--1.1配置SessionFactory-->
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--2.配置StaffService-->
+    <bean id="crmStaffService" class="com.fire.hrm.staff.service.impl.CrmStaffServiceImpl">
+        <!--2.1配置StaffDao-->
+        <property name="crmStaffDao" ref="crmStaffDao"></property>
+    </bean>
+</beans>

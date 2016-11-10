@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.fire.hrm.staff.domain.CrmStaff" table="crm_staff">
+        <id name="staffId">
+            <!--主键为UUID-->
+            <generator class="uuid"></generator>
+        </id>
+        <property name="gender" type="java.lang.String"></property>
+        <property name="staffName" type="java.lang.String"></property>
+        <property name="loginName" type="java.lang.String"></property>
+        <property name="loginPwd" type="java.lang.String"></property>
+        <property name="onDutyDate">
+            <!--映射到数据库中为datetime,应为datetime含有时分秒-->
+            <column name="onDutyDate" sql-type="datetime"></column>
+        </property>
+        <!--cascade="save-update" 级联操作-->
+        <set name="posts" cascade="save-update">
+            <key>
+                <!--外键-->
+                <column name="staffId"></column>
+            </key>
+            <many-to-many column="postId" class="com.fire.hrm.post.domain.CrmPost"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
