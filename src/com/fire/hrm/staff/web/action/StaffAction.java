@@ -60,12 +60,15 @@ public class StaffAction extends ActionSupport implements ModelDriven<CrmStaff> 
     }
 
     /**
-    * 查询所有的员工
+     * 查询所有的员工
      *
      * @return
      */
     public String findAll() {
         List<CrmStaff> allCrmStaff = mCrmStaffService.findAllCrmStaff();
+        //1.将查询出的所有员工添加到ValueStack中
+        ActionContext.getContext().put("allCrmStaff", allCrmStaff);
+
         return "findAll";
     }
 

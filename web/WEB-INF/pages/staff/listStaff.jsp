@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -102,9 +103,10 @@
 
     <%--TODO 从后台获取进行分页查询--%>
 
+
     <tr class="tabtd2">
-        <td align="center">肉丝</td>
-        <td align="center">女</td>
+        <td align="center"></td>
+        <td align="center">gender</td>
         <td align="center">2013-04-16</td>
         <td align="center">咨询部</td>
         <td align="center">主管</td>
@@ -114,23 +116,24 @@
                     src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/></a>
         </td>
     </tr>
+
+
 </table>
 
 
-
 <table border="0" cellspacing="0" cellpadding="0" align="center">
-  <tr>
-    <td align="right">
-        <%--TODO 总页数从后台获取--%>
-    	<span>第1/3页</span>
+    <tr>
+        <td align="right">
+            <%--TODO 总页数从后台获取--%>
+            <span>第1/3页</span>
         <span>
         	<a href="#">[首页]</a>&nbsp;&nbsp;
             <a href="#">[上一页]</a>&nbsp;&nbsp;
             <a href="#">[下一页]</a>&nbsp;&nbsp;
             <a href="#">[尾页]</a>
         </span>
-    </td>
-  </tr>
+        </td>
+    </tr>
 </table>
 
 </body>
