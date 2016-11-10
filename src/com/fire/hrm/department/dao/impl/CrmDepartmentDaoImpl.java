@@ -4,6 +4,8 @@ import com.fire.hrm.department.dao.CrmDepartmentDao;
 import com.fire.hrm.department.domain.CrmDepartment;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import java.util.List;
+
 /**
  * Created by admin on 2016/11/7.
  * 部门DAO的实现类
@@ -29,5 +31,11 @@ public class CrmDepartmentDaoImpl extends HibernateDaoSupport implements CrmDepa
     public CrmDepartment findCrmDepartment(String depId) {
         CrmDepartment crmDepartment = getHibernateTemplate().get(CrmDepartment.class, depId);
         return crmDepartment;
+    }
+
+    @Override
+    public List<CrmDepartment> findAllCrmDepartment() {
+        List<CrmDepartment> objects = (List<CrmDepartment>) getHibernateTemplate().find("FROM com.fire.hrm.department.domain.CrmDepartment");
+        return objects;
     }
 }

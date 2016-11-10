@@ -20,10 +20,11 @@
                 <!--2.2.1添加默认的拦截器栈-->
                 <interceptor-ref name="defaultStack"></interceptor-ref>
                 <!--2.2.2登录的拦截器-->
-                <interceptor-ref name="loginInterceptor">
-                    <!--2.2.2.1 将登录的方法排除,如果有多个用","进行分割,除login方法外,其它方法都需要对用户登录进行判断-->
-                    <param name="excludeMethods">login</param>
-                </interceptor-ref>
+                <!--TODO 临时注销,方便测试-->
+                <!--  <interceptor-ref name="loginInterceptor">
+                      &lt;!&ndash;2.2.2.1 将登录的方法排除,如果有多个用","进行分割,除login方法外,其它方法都需要对用户登录进行判断&ndash;&gt;
+                      <param name="excludeMethods">login</param>
+                  </interceptor-ref>-->
             </interceptor-stack>
         </interceptors>
         <!--2.3 将struts-default中的默认的拦截器栈覆盖掉-->
@@ -40,7 +41,7 @@
 
         <!--2.5 配置公共的访问的UIAction-->
         <!--class属性默认:ActionSupport-->
-        <action name="uiAction_*_*" >
+        <action name="uiAction_*_*">
             <!--name属性默认:execute-->
             <result>/WEB-INF/pages/{1}/{2}.jsp</result>
         </action>

@@ -59,20 +59,28 @@
         <tr>
             <td width="10%">所属部门：</td>
             <td width="20%">
-                <select name="crmPost.crmDepartment.depId" onchange="changePost(this)">
+                <%--<select name="crmPost.crmDepartment.depId" onchange="changePost(this)">
                     <option value="">----请--选--择----</option>
                     <option value="2c9091c14c78e58b014c78e67de10001" selected="selected">java学院</option>
                     <option value="2c9091c14c78e58b014c78e68ded0002">咨询部</option>
-                </select>
+                </select>--%>
+                <s:select list="allCrmDepartment"
+                          listKey="depId" listValue="depName"
+                          headerKey="" headerValue="----请--选--择----" name="crmPost.department.depId"></s:select>
 
             </td>
             <td width="8%">职务：</td>
             <td width="62%">
-                <select name="crmPost.postId" id="postSelectId">
-                    <option value="">----请--选--择----</option>
-                    <option value="2c9091c14c78e58b014c78e6b34a0003">总监</option>
-                    <option value="2c9091c14c78e58b014c78e6d4510004" selected="selected">讲师</option>
-                </select>
+                <%-- <select name="crmPost.postId" id="postSelectId">
+                     <option value="">----请--选--择----</option>
+                     <option value="2c9091c14c78e58b014c78e6b34a0003">总监</option>
+                     <option value="2c9091c14c78e58b014c78e6d4510004" selected="selected">讲师</option>
+                 </select>--%>
+                <s:select list="crmPost.department.posts"
+                          listKey="postId" listValue="postName"
+                          headerKey="" headerValue="----请--选--择----"
+                          name="crmPost.postId"
+                />
             </td>
         </tr>
         <tr>

@@ -1,5 +1,7 @@
 package com.fire.hrm.staff.web.action;
 
+import com.fire.hrm.department.domain.CrmDepartment;
+import com.fire.hrm.department.service.CrmDepartmentService;
 import com.fire.hrm.staff.domain.CrmStaff;
 import com.fire.hrm.staff.service.CrmStaffService;
 import com.opensymphony.xwork2.ActionContext;
@@ -28,7 +30,12 @@ public class StaffAction extends ActionSupport implements ModelDriven<CrmStaff> 
         this.mCrmStaffService = crmStaffService;
     }
 
-    //-------------------------------------------------------上面是公共的-------------------------------------------------------------
+    private CrmDepartmentService mCrmDepartmentService;
+
+    public void setCrmDepartmentService(CrmDepartmentService crmDepartmentService) {
+        mCrmDepartmentService = crmDepartmentService;
+    }
+//-------------------------------------------------------上面是公共的-------------------------------------------------------------
 
     /**
      * 登录的方法
@@ -81,6 +88,10 @@ public class StaffAction extends ActionSupport implements ModelDriven<CrmStaff> 
         CrmStaff crmStaff = mCrmStaffService.findCrmStaff(mCrmStaff.getStaffId());
         //1.将查询出的员工放入到root栈中
         ActionContext.getContext().getValueStack().push(crmStaff);
+
+        //2.查询所有的部门
+        List<CrmDepartment> allCrmDepartment = mCrmDepartmentService.findAllCrmDepartment();
+        ActionContext.getContext().getValueStack().set("allCrmDepartment", allCrmDepartment);
         return "editStaff";
     }
 

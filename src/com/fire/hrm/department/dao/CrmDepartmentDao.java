@@ -2,6 +2,8 @@ package com.fire.hrm.department.dao;
 
 import com.fire.hrm.department.domain.CrmDepartment;
 
+import java.util.List;
+
 /**
  * Created by admin on 2016/11/7.
  */
@@ -29,4 +31,11 @@ public interface CrmDepartmentDao {
      * 查找部门
      */
     CrmDepartment findCrmDepartment(String depId);
+
+    /**
+     * 查询所有的不猛
+     *
+     * @return
+     */
+    List<CrmDepartment> findAllCrmDepartment();
 }
