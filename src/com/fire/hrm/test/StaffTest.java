@@ -26,7 +26,7 @@ public class StaffTest {
         CrmStaff staff = new CrmStaff();
         staff.setStaffId(UUID.randomUUID().toString());
         staff.setGender("男");
-        staff.setLoginName("fire");
+        staff.setLoginName("nini");
         staff.setLoginPwd("123");
         staff.setStaffName("root");
         staff.setOnDutyDate(new Date());

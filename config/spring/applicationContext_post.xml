@@ -2,6 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <!--1.-->
+    <!--1.配置Dao-->
+    <bean id="crmPostDao" class="com.fire.hrm.post.dao.impl.CrmPostDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--2.配置Service-->
+    <bean id="crmPostService" class="com.fire.hrm.post.service.impl.CrmPostServiceImpl">
+        <property name="crmPostDao" ref="crmPostDao"></property>
+    </bean>
 
 </beans>

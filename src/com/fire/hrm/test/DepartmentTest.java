@@ -26,7 +26,8 @@ public class DepartmentTest {
         UUID uuid = UUID.randomUUID();
         CrmDepartment crmDepartment = new CrmDepartment();
         crmDepartment.setDepId(uuid.toString());
-        crmDepartment.setDepName("研发部");
+        crmDepartment.setDepName("财务部");
         mCRMDepartmentService.addCRMDepartment(crmDepartment);
     }
+
 }

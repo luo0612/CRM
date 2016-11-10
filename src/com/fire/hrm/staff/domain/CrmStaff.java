@@ -3,8 +3,6 @@ package com.fire.hrm.staff.domain;
 import com.fire.hrm.post.domain.CrmPost;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by admin on 2016/11/7.
@@ -18,14 +16,14 @@ public class CrmStaff {
     private String gender;
     private Date onDutyDate;
 
-    private Set<CrmPost> posts = new HashSet<>();
+    private CrmPost crmPost;
 
-    public Set<CrmPost> getPosts() {
-        return posts;
+    public CrmPost getCrmPost() {
+        return crmPost;
     }
 
-    public void setPosts(Set<CrmPost> posts) {
-        this.posts = posts;
+    public void setCrmPost(CrmPost crmPost) {
+        this.crmPost = crmPost;
     }
 
     public String getStaffId() {

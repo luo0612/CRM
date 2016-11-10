@@ -103,20 +103,20 @@
 
     <%--TODO 从后台获取进行分页查询--%>
 
-
-    <tr class="tabtd2">
-        <td align="center"></td>
-        <td align="center">gender</td>
-        <td align="center">2013-04-16</td>
-        <td align="center">咨询部</td>
-        <td align="center">主管</td>
-        <td width="7%" align="center">
-            <%--TODO 点击编辑需要将员工的staffId传递过去--%>
-            <a href="${pageContext.request.contextPath}/uiAction_staff_editStaff?staffId=''"><img
-                    src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/></a>
-        </td>
-    </tr>
-
+    <s:iterator value="#allCrmStaff" >
+        <tr class="tabtd2">
+            <td align="center"><s:property value="staffId"/></td>
+            <td align="center"><s:property value="gender"/></td>
+            <td align="center"><s:date name="onDutyDate" format="yyyy-MM-dd"/></td>
+            <td align="center">咨询部</td>
+            <td align="center"><s:property value="posts"></s:property></td>
+            <td width="7%" align="center">
+                    <%--TODO 点击编辑需要将员工的staffId传递过去--%>
+                <a href="${pageContext.request.contextPath}/uiAction_staff_editStaff?staffId=''"><img
+                        src="${pageContext.request.contextPath}/images/button/modify.gif" class="img"/></a>
+            </td>
+        </tr>
+    </s:iterator>
 
 </table>
 
